@@ -1,2 +1,3 @@
 # nextjs-starter
-Starting point for nextjs
+
+Starting point for a nextjs website
