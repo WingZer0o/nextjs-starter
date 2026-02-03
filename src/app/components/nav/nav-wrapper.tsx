@@ -21,17 +21,17 @@ export default function NavWrapper({
 
   useEffect(() => {
     sidebarRef.current = document.getElementById("sidebar") as HTMLElement;
-    
+
     const handleResize = () => {
       if (window.innerWidth > 767) {
         setState({ on: false });
         handleSidebarToggle();
       }
     };
-    
+
     // Check initial screen size on mount
     handleResize();
-    
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
