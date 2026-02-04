@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 
 export async function handleRegister(formData: FormData) {
   const userInfo = getUserInfo(formData);
-
-  // TODO: implement registration logic here.
+  // TODO: implement rest of registration logic here.
+  return true;
 }
 
 export async function handleSignIn(formData: FormData) {
@@ -52,7 +52,7 @@ export async function handleSignOut() {
 
 function getUserInfo(formData: FormData) {
   return {
-    email: formData.get("email")?.toString() || "",
-    password: formData.get("password")?.toString() || "",
+    email: formData.get("email"),
+    password: formData.get("password"),
   };
 }

@@ -1,8 +1,17 @@
 "use client";
 
+import { handleRegister } from "../../services/auth-actions";
+
 export default function RegisterForm() {
+  const handleSubmit = async (FormData: FormData) => {
+    const success = await handleRegister(FormData);
+    if (success) {
+      // TODO: handle redirect.
+    }
+  };
+
   return (
-    <form method="post" className="form-wrapper">
+    <form action={handleSubmit} method="post" className="form-wrapper">
       <div className="form-label-group">
         <input
           name="email"
