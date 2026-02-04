@@ -1,9 +1,14 @@
 "use server";
 import { cookies } from "next/headers";
 
+export async function handleRegister(formData: FormData) {
+  const userInfo = getUserInfo(formData);
+
+  // TODO: implement registration logic here.
+}
+
 export async function handleSignIn(formData: FormData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const userInfo = getUserInfo(formData);
 
   try {
     const response = await fetch(
@@ -12,8 +17,7 @@ export async function handleSignIn(formData: FormData) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          Email: email,
-          Password: password,
+          ...userInfo,
           RememberMe: false,
         }),
       },
@@ -44,4 +48,11 @@ export async function handleSignOut() {
   }).catch((error) => {
     console.error("Error:", error);
   });
+}
+
+function getUserInfo(formData: FormData) {
+  return {
+    email: formData.get("email")?.toString() || "",
+    password: formData.get("password")?.toString() || "",
+  };
 }
