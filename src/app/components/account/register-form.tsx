@@ -1,0 +1,33 @@
+"use client";
+
+export default function RegisterForm() {
+  return (
+    <form method="post" className="form-wrapper">
+      <div className="form-label-group">
+        <input
+          name="email"
+          id="registerEmail"
+          placeholder="Email"
+          required
+          className="form-control"
+          type="email"
+        />
+        <label htmlFor="registerEmail">Email</label>
+      </div>
+      <div className="form-label-group">
+        <input
+          name="password"
+          id="registerPassword"
+          placeholder="Password"
+          required
+          className="form-control"
+          type="password"
+        />
+        <label htmlFor="registerPassword">Password</label>
+      </div>
+      <button className="btn btn-lg btn-primary btn-block" type="submit">
+        Register
+      </button>
+    </form>
+  );
+}
