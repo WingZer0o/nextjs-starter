@@ -3,13 +3,26 @@ import { cookies } from "next/headers";
 
 export async function handleRegister(formData: FormData) {
   const userInfo = getUserInfo(formData);
-  // TODO: implement rest of registration logic here.
-  return true;
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/Account/Register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInfo),
+      },
+    );
+    if (response.ok) {
+      return true;
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    return false;
+  }
 }
 
 export async function handleSignIn(formData: FormData) {
   const userInfo = getUserInfo(formData);
-
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/Account/Login`,

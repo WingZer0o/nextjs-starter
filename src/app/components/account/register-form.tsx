@@ -1,12 +1,13 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import { handleRegister } from "../../services/auth-actions";
 
 export default function RegisterForm() {
   const handleSubmit = async (FormData: FormData) => {
     const success = await handleRegister(FormData);
     if (success) {
-      // TODO: handle redirect.
+      redirect("/signin");
     }
   };
 
