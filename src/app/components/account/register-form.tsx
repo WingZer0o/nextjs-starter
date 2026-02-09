@@ -35,6 +35,17 @@ export default function RegisterForm() {
         />
         <label htmlFor="registerPassword">Password</label>
       </div>
+      <div className="form-label-group">
+        <input
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Password"
+          required
+          className="form-control"
+          type="password"
+        />
+        <label htmlFor="confirmPassword">Confirm Password</label>
+      </div>
       <button className="btn btn-lg btn-primary btn-block" type="submit">
         Register
       </button>

@@ -2,14 +2,21 @@
 import { cookies } from "next/headers";
 
 export async function handleRegister(formData: FormData) {
-  const userInfo = getUserInfo(formData);
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirmPassword");
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/Account/Register`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userInfo),
+        body: JSON.stringify({
+          Email: email,
+          Password: password,
+          ConfirmPassword: confirmPassword,
+        }),
       },
     );
     if (response.ok) {
@@ -22,7 +29,9 @@ export async function handleRegister(formData: FormData) {
 }
 
 export async function handleSignIn(formData: FormData) {
-  const userInfo = getUserInfo(formData);
+  const email = formData.get("email");
+  const password = formData.get("password");
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/Account/Login`,
@@ -30,7 +39,8 @@ export async function handleSignIn(formData: FormData) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...userInfo,
+          Email: email,
+          Password: password,
           RememberMe: false,
         }),
       },
@@ -61,11 +71,4 @@ export async function handleSignOut() {
   }).catch((error) => {
     console.error("Error:", error);
   });
-}
-
-function getUserInfo(formData: FormData) {
-  return {
-    email: formData.get("email"),
-    password: formData.get("password"),
-  };
 }
